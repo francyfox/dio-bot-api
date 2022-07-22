@@ -1,8 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import {AppModule} from "./app.module";
+import {DIO} from "./bootstrap";
 
-async function bootstrap() {
+
+async function serverStart() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
@@ -13,7 +15,14 @@ async function bootstrap() {
       .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+  const PORT:string | number = Number(process.env.PORT) || 3000
 
-  await app.listen(3000);
+  await app.listen(
+      PORT,
+      () => {
+        console.log(DIO.colors.alert, `[DIO] - Server start on port ${PORT}`)
+      }
+  );
 }
-bootstrap();
+
+serverStart();
