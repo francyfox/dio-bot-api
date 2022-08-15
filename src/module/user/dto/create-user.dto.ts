@@ -5,6 +5,6 @@ export class CreateUserDto {
   readonly username: string;
   @ApiProperty({ example: 'P@$$w0rd', description: 'Пароль' })
   readonly password: string;
-  @ApiProperty({ example: '[1, 2]', description: 'ID групп (Many to One)' })
-  readonly chatId: Array<number>;
+  // @ApiProperty({ example: '[1, 2]', description: 'ID групп (Many to One)' })
+  // readonly chatId: Array<number>;
 }

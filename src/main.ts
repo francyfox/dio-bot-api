@@ -8,7 +8,7 @@ async function serverStart() {
 
   const config = new DocumentBuilder()
     .setTitle('Dio Bot Api')
-    .setDescription('The cats API description')
+    .setDescription('Это сервис для взаимодействия с телеграм ботом.')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

@@ -8,7 +8,6 @@ export class UserService {
   constructor(@InjectModel(User) private UserRepository: typeof User) {}
 
   async createUser(dto: CreateUserDto) {
-    // @ts-ignore
     return await this.UserRepository.create(dto);
   }
 

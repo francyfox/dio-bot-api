@@ -1,20 +1,19 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
+import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
 
 interface UserCreationAttrs {
   username: string;
   password: string;
-  chatId: number;
 }
 
 @Table({ tableName: 'users' })
 export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Уникальный ID' })
-  // @ts-ignore
   @Column({
     type: DataType.INTEGER,
     unique: true,
-    autoIncerement: true,
+    autoIncrement: true,
     primaryKey: true,
   })
   id: number;
@@ -35,7 +34,7 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.INTEGER, unique: true })
   chatId: number;
 
-  @ApiProperty({ example: '[1, 2]', description: 'ID групп (Many to One)' })
-  @Column({ type: DataType.ARRAY(DataType.DECIMAL), allowNull: false })
-  groupId: Array<number>;
+  // @ApiProperty({ example: '[1, 2]', description: 'ID групп (Many to One)' })
+  // @Column({ type: DataType.ARRAY(DataType.DECIMAL), allowNull: false })
+  // groupId: Array<number>;
 }

@@ -5,6 +5,9 @@ import { UserModule } from './module/user/user.module';
 import { MessageService } from './module/message/message.service';
 import { MessageModule } from './module/message/message.module';
 import { User } from './module/user/user.model';
+import { Group } from './module/group/group.model';
+import { GroupModule } from './module/group/group.module';
+import { UserService } from './module/user/user.service';
 
 @Module({
   imports: [
@@ -18,12 +21,15 @@ import { User } from './module/user/user.model';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      models: [User],
+      models: [
+        User,
+        // Group,
+      ],
       autoLoadModels: true,
     }),
+    // GroupModule,
     UserModule,
     MessageModule,
   ],
-  providers: [MessageService],
 })
 export class AppModule {}
