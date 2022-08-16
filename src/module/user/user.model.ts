@@ -1,6 +1,13 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
+import { Group } from '../group/group.model';
+import { UserGroups } from '../group/user-groups.model';
 
 interface UserCreationAttrs {
   username: string;
@@ -30,11 +37,6 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 
-  @ApiProperty({ example: '0001', description: 'ID чата в Telegram' })
-  @Column({ type: DataType.INTEGER, unique: true })
-  chatId: number;
-
-  // @ApiProperty({ example: '[1, 2]', description: 'ID групп (Many to One)' })
-  // @Column({ type: DataType.ARRAY(DataType.DECIMAL), allowNull: false })
-  // groupId: Array<number>;
+  @BelongsToMany(() => Group, () => UserGroups)
+  groups: Group[];
 }

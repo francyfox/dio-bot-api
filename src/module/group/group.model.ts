@@ -1,31 +1,41 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from '../user/user.model';
+import { UserGroups } from './user-groups.model';
 
 export interface GroupCreationAttrs {
   groupName: string;
-  // groupId: Array<number>;
+  value: string;
 }
 
-@Table({ tableName: 'users' })
+@Table({ tableName: 'groups' })
 export class Group extends Model<Group, GroupCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Уникальный ID' })
-  // @ts-ignore
   @Column({
     type: DataType.INTEGER,
     unique: true,
-    autoIncerement: true,
+    autoIncrement: true,
     primaryKey: true,
   })
   id: number;
 
-  @ApiProperty({ example: 'Developers', description: 'Название группы' })
-  @Column({ type: DataType.STRING, unique: true, allowNull: true })
+  @ApiProperty({ example: 'Разработчики', description: 'Название группы' })
+  @Column({ type: DataType.STRING, unique: true, allowNull: false })
   groupName: string;
 
-  // @ApiProperty({
-  //   example: '[1, 2]',
-  //   description: 'ID пользователей в группе (Many to One)',
-  // })
-  // @Column({ type: DataType.ARRAY(DataType.DECIMAL), allowNull: false })
-  // groupId: Array<number>;
+  @ApiProperty({
+    example: 'DEV',
+    description: 'Значение группы пользователей (Users to Groups)',
+  })
+  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+  value: string;
+
+  @BelongsToMany(() => User, () => UserGroups)
+  users: User[];
 }

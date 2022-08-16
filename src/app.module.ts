@@ -2,12 +2,10 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './module/user/user.module';
-import { MessageService } from './module/message/message.service';
 import { MessageModule } from './module/message/message.module';
 import { User } from './module/user/user.model';
 import { Group } from './module/group/group.model';
-import { GroupModule } from './module/group/group.module';
-import { UserService } from './module/user/user.service';
+import { UserGroups } from './module/group/user-groups.model';
 
 @Module({
   imports: [
@@ -21,10 +19,7 @@ import { UserService } from './module/user/user.service';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      models: [
-        User,
-        // Group,
-      ],
+      models: [User, Group, UserGroups],
       autoLoadModels: true,
     }),
     // GroupModule,

@@ -1,11 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { GroupService } from './group.service';
-import {
-  ApiOperation,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Group } from './group.model';
 
 @Controller('group')
