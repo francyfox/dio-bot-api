@@ -7,12 +7,19 @@ import { CreateGroupDto } from './dto/create-group.dto';
 export class GroupService {
   constructor(@InjectModel(Group) private GroupRepository: typeof Group) {}
 
-  async createUser(dto: CreateGroupDto) {
+  async createGroup(dto: CreateGroupDto) {
     // @ts-ignore
     return await this.GroupRepository.create(dto);
   }
 
-  async getAllUsers() {
+  async getGroupByValue(value: string) {
+    return await this.GroupRepository.findOne({
+      rejectOnEmpty: Number.isNaN(value),
+      where: { value },
+    });
+  }
+
+  async getAllGroups() {
     return await this.GroupRepository.findAll();
   }
 }

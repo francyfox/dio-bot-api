@@ -6,6 +6,7 @@ import { MessageModule } from './module/message/message.module';
 import { User } from './module/user/user.model';
 import { Group } from './module/group/group.model';
 import { UserGroups } from './module/group/user-groups.model';
+import { GroupModule } from './module/group/group.module';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { UserGroups } from './module/group/user-groups.model';
       models: [User, Group, UserGroups],
       autoLoadModels: true,
     }),
-    // GroupModule,
+    GroupModule,
     UserModule,
     MessageModule,
   ],
