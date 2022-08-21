@@ -7,6 +7,7 @@ import { User } from './module/user/user.model';
 import { Group } from './module/group/group.model';
 import { UserGroups } from './module/group/user-groups.model';
 import { GroupModule } from './module/group/group.module';
+import { BotModule } from './module/bot/bot.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { GroupModule } from './module/group/group.module';
     GroupModule,
     UserModule,
     MessageModule,
+    BotModule,
   ],
 })
 export class AppModule {}
