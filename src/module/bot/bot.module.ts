@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TelegrafModule } from 'nestjs-telegraf';
-import * as LocalSession from 'telegraf-session-local';
 import { BotUpdate } from './bot.update';
 import { BotService } from './bot.service';
 import { ConfigModule } from '@nestjs/config';
-
-const session = new LocalSession({ database: 'session_db.json' });
+import { BotController } from './bot.controller';
 
 @Module({
   providers: [BotService, BotUpdate],
@@ -18,5 +16,6 @@ const session = new LocalSession({ database: 'session_db.json' });
       token: process.env.TELEGRAM_API_TOKEN ?? '',
     }),
   ],
+  controllers: [BotController],
 })
 export class BotModule {}
