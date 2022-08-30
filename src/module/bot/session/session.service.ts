@@ -16,4 +16,18 @@ export class SessionService {
   async getAllSessions() {
     return await this.SessionRepository.findAll();
   }
+
+  // async getSessionById(id: number) {
+  //   return await this.SessionRepository.findOne({
+  //     rejectOnEmpty: Number.isNaN(id),
+  //     where: { id },
+  //   });
+  // }
+
+  async getSessionByMessage(value: string) {
+    return await this.SessionRepository.findOne({
+      rejectOnEmpty: Number.isNaN(value),
+      where: { value },
+    });
+  }
 }

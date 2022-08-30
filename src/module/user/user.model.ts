@@ -41,6 +41,10 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   confirm: boolean;
 
+  @ApiProperty({ example: 'token', description: 'Токен' })
+  @Column({ type: DataType.STRING, unique: true })
+  token: string;
+
   @BelongsToMany(() => Group, () => UserGroups)
   groups: Group[];
 }
