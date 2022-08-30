@@ -37,6 +37,10 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 
+  @ApiProperty({ example: 'true', description: 'Статус регистрации' })
+  @Column({ type: DataType.BOOLEAN, defaultValue: false })
+  confirm: boolean;
+
   @BelongsToMany(() => Group, () => UserGroups)
   groups: Group[];
 }

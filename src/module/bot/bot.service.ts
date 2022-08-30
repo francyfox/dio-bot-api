@@ -1,3 +1,1 @@
-export class BotService {
-
-}
+export class BotService {}

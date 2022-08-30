@@ -7,9 +7,11 @@ import { Group } from './module/group/group.model';
 import { UserGroups } from './module/group/user-groups.model';
 import { GroupModule } from './module/group/group.module';
 import { BotModule } from './module/bot/bot.module';
-import { SessionController } from './module/session/session.controller';
-import { SessionModule } from './module/session/session.module';
+import { TelegrafModule } from 'nestjs-telegraf';
+import { SessionModule } from './module/bot/session/session.module';
+import { session } from './module/bot/session/session.middleware';
 
+// @ts-ignore
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -25,11 +27,14 @@ import { SessionModule } from './module/session/session.module';
       models: [User, Group, UserGroups],
       autoLoadModels: true,
     }),
+    TelegrafModule.forRoot({
+      middlewares: [session()],
+      token: process.env.TELEGRAM_API_TOKEN ?? '',
+    }),
     GroupModule,
     UserModule,
     BotModule,
     SessionModule,
   ],
-  controllers: [SessionController],
 })
 export class AppModule {}
