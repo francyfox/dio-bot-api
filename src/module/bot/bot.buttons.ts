@@ -1,11 +1,12 @@
 import { Markup } from 'telegraf';
+import { Commands } from './bot.cmd';
 
 export const actionButtons = () => {
   return Markup.keyboard(
     [
-      Markup.button.callback('♥ Привязать телеграм к сайту', 'connect'),
-      Markup.button.callback('📦 Выбрать уведомления', 'list'),
-      Markup.button.callback('👪 Список пользователей в системе', 'list_user'),
+      Markup.button.callback(Commands.connect, 'connect'),
+      Markup.button.callback(Commands.list, 'list'),
+      Markup.button.callback(Commands.list_user, 'list_user'),
     ],
     {
       columns: 3,
