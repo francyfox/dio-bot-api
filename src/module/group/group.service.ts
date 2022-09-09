@@ -8,7 +8,6 @@ export class GroupService {
   constructor(@InjectModel(Group) private GroupRepository: typeof Group) {}
 
   async createGroup(dto: CreateGroupDto) {
-    // @ts-ignore
     return await this.GroupRepository.create(dto);
   }
 

@@ -8,6 +8,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Group } from '../group/group.model';
 import { UserGroups } from '../group/user-groups.model';
+import { randomAsciiString } from '../../helper';
 
 interface UserCreationAttrs {
   username: string;
@@ -41,9 +42,12 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   confirm: boolean;
 
-  @ApiProperty({ example: 'token', description: 'Токен' })
+  @ApiProperty({
+    example: randomAsciiString(20, 't_'),
+    description: 'Токен',
+  })
   @Column({ type: DataType.STRING, unique: true })
-  token: string;
+  token: string = randomAsciiString(20, 't_');
 
   @BelongsToMany(() => Group, () => UserGroups)
   groups: Group[];
