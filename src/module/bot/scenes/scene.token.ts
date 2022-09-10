@@ -7,10 +7,14 @@ import { UserService } from '../../user/user.service';
 import { User } from '../../user/user.model';
 import { Commands } from '../bot.cmd';
 import { Context } from '../session/session.context';
+import { SessionService } from '../session/session.service';
 
 @Wizard('GET_TOKEN')
 export default class SceneToken {
-  constructor(private usersService: UserService) {}
+  constructor(
+    private usersService: UserService,
+    private sessionService: SessionService,
+  ) {}
 
   @WizardStep(1)
   async enter(ctx: WizardContext) {
@@ -22,6 +26,8 @@ export default class SceneToken {
   @WizardStep(2)
   async getToken(ctx: WizardContext) {
     const message = ctx.message as Message.TextMessage;
+    // @ts-ignore
+    const sessionId = `${ctx.from.id}:${ctx.from.id}`;
     if (validateToken(message.text)) {
       const user: User | null = await this.usersService.getUserByToken(
         message.text,
@@ -31,6 +37,8 @@ export default class SceneToken {
           { confirm: true },
           { where: { id: user.getDataValue('id') } },
         );
+        // @ts-ignore
+        await user.$set('sessions', [sessionId]);
         await ctx.replyWithHTML(
           `✅ <i>Бот привязан к пользователю</i>: <b>${user.getDataValue(
             'username',

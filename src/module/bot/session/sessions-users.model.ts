@@ -1,16 +1,15 @@
 import {
-  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
-import { User } from '../user/user.model';
-import { Group } from './group.model';
+import { Session } from './session.model';
+import { User } from '../../user/user.model';
 
-@Table({ tableName: 'user_groups', createdAt: false, updatedAt: false })
-export class UserGroups extends Model<UserGroups> {
+@Table({ tableName: 'sessions_users', createdAt: false, updatedAt: false })
+export class SessionsUsers extends Model<SessionsUsers> {
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -19,9 +18,9 @@ export class UserGroups extends Model<UserGroups> {
   })
   id: number;
 
-  @ForeignKey(() => Group)
+  @ForeignKey(() => Session)
   @Column({ type: DataType.INTEGER })
-  groupId: number;
+  sessionId: number;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER })

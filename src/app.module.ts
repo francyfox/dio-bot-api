@@ -24,7 +24,7 @@ import { session } from './module/bot/session/session.middleware';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      models: [User, Group, UserGroups],
+      models: [],
       autoLoadModels: true,
     }),
     TelegrafModule.forRoot({

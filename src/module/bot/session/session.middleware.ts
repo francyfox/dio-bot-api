@@ -11,7 +11,7 @@ export const session = <C extends Context = Context>(): MiddlewareFn<C> => {
 
   const saveSession = (key: null | string, data: any) =>
     Session.upsert({
-      sessionId: key ?? '',
+      sessionId: key ?? '', // TODO: Почему он пишет userId дважды?
       data: JSON.stringify(data),
     });
   const getSession = async (key: string) => {

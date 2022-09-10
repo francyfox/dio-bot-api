@@ -14,7 +14,7 @@ export interface GroupCreationAttrs {
   value: string;
 }
 
-@Table({ tableName: 'groups' })
+@Table({ tableName: 'groups', updatedAt: false, createdAt: false })
 export class Group extends Model<Group, GroupCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Уникальный ID' })
   @Column({

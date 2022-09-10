@@ -9,6 +9,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Group } from '../group/group.model';
 import { UserGroups } from '../group/user-groups.model';
 import { randomAsciiString } from '../../helper';
+import { SessionsUsers } from '../bot/session/sessions-users.model';
+import { Session } from '../bot/session/session.model';
 
 interface UserCreationAttrs {
   username: string;
@@ -51,4 +53,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @BelongsToMany(() => Group, () => UserGroups)
   groups: Group[];
+
+  @BelongsToMany(() => Session, () => SessionsUsers)
+  sessions: Session[];
 }
