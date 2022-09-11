@@ -51,9 +51,9 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.STRING, unique: true })
   token: string = randomAsciiString(20, 't_');
 
-  @BelongsToMany(() => Group, () => UserGroups)
-  groups: Group[];
-
   @BelongsToMany(() => Session, () => SessionsUsers)
   sessions: Session[];
+
+  @BelongsToMany(() => Group, () => UserGroups)
+  groups: Group[];
 }

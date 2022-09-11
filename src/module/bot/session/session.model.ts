@@ -1,5 +1,13 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from '../../user/user.model';
+import { SessionsUsers } from './sessions-users.model';
 
 interface SessionCreateAttrs {
   sessionId: string;
@@ -20,4 +28,7 @@ export class Session extends Model<Session, SessionCreateAttrs> {
   @ApiProperty({ example: 'fox', description: 'Данные' })
   @Column({ type: DataType.TEXT })
   data: string;
+
+  @BelongsToMany(() => User, () => SessionsUsers)
+  users: User[];
 }

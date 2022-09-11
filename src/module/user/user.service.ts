@@ -28,8 +28,16 @@ export class UserService {
     return await this.UserRepository.findAll({ include: { all: true } });
   }
 
+  async getUserByID(id: number) {
+    return await this.UserRepository.findOne({
+      include: { all: true },
+      where: { id },
+    });
+  }
+
   async getUserByToken(token: string) {
     return await this.UserRepository.findOne({
+      include: { all: true },
       where: { token },
     });
   }

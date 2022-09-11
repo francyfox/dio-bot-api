@@ -24,7 +24,7 @@ export class GroupService {
       include: [
         {
           all: true,
-          attributes: { exclude: ['createdAt', 'updatedAt', 'UserGroups'] },
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
         },
       ],
       where: { value },
