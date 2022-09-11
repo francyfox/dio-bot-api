@@ -1,4 +1,4 @@
-# Dio Bot Api v1.0 (Nest)
+# Dio Bot Api v0.5 (Nest)
 
 Бот базируется на nestjs + sequilize + telegraf.
 Основные задачи:
