@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "env": {
+    "PORT": "@app_port",
+    "TELEGRAM_API_TOKEN": "@telegram_api_key",
+    "DB_HOST": "@msql_host_uri",
+    "DB_PORT": "@msql_port",
+    "DB_NAME": "@msql_name",
+    "DB_USER": "@msql_user",
+    "DB_PASS": "@msql_pass"
+  },
+  "builds": [
+    {
+      "src": "src/main.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ]
+    }
+  ]
+}
