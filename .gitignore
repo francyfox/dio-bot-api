@@ -36,3 +36,4 @@ lerna-debug.log*
 
 ./.env
 /.docker/db/mysql_8.0/data/
+.vercel
