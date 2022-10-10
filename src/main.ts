@@ -13,7 +13,7 @@ async function serverStart() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  const PORT: string | number = Number(process.env.PORT) || 3000;
+  const PORT: string | number = Number(process.env.APP_PORT) || 3000;
 
   await app.listen(PORT, () => {
     console.log(DIO.colors.alert, `[DIO] - Server start on port ${PORT}`);
