@@ -67,7 +67,7 @@ const authenticate = async (email: string, password: string) => {
     }),
     TelegrafModule.forRoot({
       middlewares: [session()],
-      token: process.env.TELEGRAM_API_TOKEN ?? '',
+      token: process.env.TELEGRAM_API_KEY ?? '',
     }),
     GroupModule,
     UserModule,
